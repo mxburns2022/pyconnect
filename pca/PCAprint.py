@@ -121,7 +121,7 @@ class PCAprint(PCA):
             
     def PrintPCMatrix(self):
         '''
-        Print self.PCs as a matrix
+        print(self.PCs as a matrix)
         '''
         f = open('self.PCsMatrix','w')
         m,n = np.shape(self.PCs)

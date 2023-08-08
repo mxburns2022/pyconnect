@@ -169,7 +169,7 @@ class PCA(MyPCAprep):
         for i in range(self.numPCs):
             if self.variance[i] >= 0: self.std[i] = np.sqrt(self.variance[i])
             else:
-                print 'WARNING: variance of PC %d of %d is < 0, calculating sqrt of its modulus'%(i+1,self.numPCs)
+                print('WARNING: variance of PC %d of %d is < 0, calculating sqrt of its modulus'%(i+1,self.numPCs))
                 self.std[i] = np.sqrt(np.abs(self.variance[i]))
 
         self.norm_std = np.sqrt(self.std)/sum(self.std)

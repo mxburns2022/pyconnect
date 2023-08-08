@@ -26,9 +26,9 @@ class MyPCAprep(PCAinit):
 #            self.ReshapeCartesian3D2D()
 #
 #        if self.basis == 'dihedral':
-#            print 'Converting to Internal Dihedrals'
+#            print('Converting to Internal Dihedrals')
 #            self.ReshapeDihedral()
-#            print 'Done'
+#            print('Done')
     #==========================================================================#
     # FUNCTIONS
     
@@ -52,7 +52,7 @@ class MyPCAprep(PCAinit):
         self.global_min_energy = min(self.min_energies)
         self.global_min_index = self.min_energies.index(self.global_min_energy)
 
-        print 'Global minimum: %d\tEnergy = %2.4f'%(self.global_min_index,
+        print('Global minimum: %d\tEnergy = %2.4f'%(self.global_min_index,)
                                                     self.global_min_energy)
        
     def CalculateWeighting(self):
@@ -64,7 +64,7 @@ class MyPCAprep(PCAinit):
         structures and is analogous to a fictional inverse temperature
         '''
         self.weight_array = np.zeros(self.n_min)
-        print 'Structures will be boltzmann weighted according to e^(-beta*dE) where beta =%3.2f and dE is energy of minima relative to the global minimum'%self.kw.beta
+        print('Structures will be boltzmann weighted according to e^(-beta*dE) where beta =%3.2f and dE is energy of minima relative to the global minimum'%self.kw.beta)
         for i in range(self.n_min):
             j = self.min_index[i] # BAD style, but will have to do
             self.weight_array[i] = self.min_energies[j]
@@ -177,9 +177,9 @@ class MyPCAprep(PCAinit):
         # Need to think of how to handle co-linear atoms <====== Ask Mark!
             
         if np.linalg.norm(W) < 0.01:
-            print 'help!'
+            print('help!')
         if np.linalg.norm(V) < 0.01:
-            print 'help too!'
+            print('help too!')
             
                     
         # The cosine of the dihedral angle can be calculated easily
@@ -208,9 +208,9 @@ class MyPCAprep(PCAinit):
         '''
     
         # Translate each structure so that Centre of Mass is at the origin
-        print 'Translating Structure Centroids to Origin'
+        print('Translating Structure Centroids to Origin')
         self.CentreOfMass()
-        print 'Done'
+        print('Done')
     
         # Calculate initial ensemble average 
         self.ensemble_average = np.mean(self.config_space, axis=0)
@@ -221,7 +221,7 @@ class MyPCAprep(PCAinit):
             
             # Calculate a 1D [n_min] narray of the residue for each structure
             self.Residue()
-            print sum(self.structure_residue), self.config_space.shape
+            print(sum(self.structure_residue), self.config_space.shape)
             # In this loop, calculate and perform the rotation matrix for each 
             # structure in the ensemble relative to the ensemble mean
             for j in range(self.n_min): 
@@ -240,11 +240,11 @@ class MyPCAprep(PCAinit):
 
             # If difference is below critical value, exit loop
             if diff_ensemble_average < self.kw.conv:
-                print 'Average structure converged, norm of difference between ensemble averages after %i iterations: %3.8f'%(i+1, diff_ensemble_average)
+                print('Average structure converged, norm of difference between ensemble averages after %i iterations: %3.8f'%(i+1, diff_ensemble_average))
                 break
             
 
-            print 'Norm of difference between ensemble averages after %i iterations: %3.8f'%(i+1, diff_ensemble_average)
+            print('Norm of difference between ensemble averages after %i iterations: %3.8f'%(i+1, diff_ensemble_average))
         
 #        self.config_space = self.config_space - self.ensemble_average
         # What is the relevance of the above line?

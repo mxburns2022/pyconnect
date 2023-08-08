@@ -90,7 +90,7 @@ class Keyword():
             if not var: missing_list.append(attr)
         
         if missing_list:
-            print 'WARNING: Following Keywords not found:\n', missing_list
+            print('WARNING: Following Keywords not found:\n', missing_list)
             sys.exit()
     
     def TypeCheck(self):
@@ -112,6 +112,6 @@ class Keyword():
 if __name__ == '__main__':
     kw = Keyword()
     for attr, val in kw.__dict__.iteritems():
-        print attr, val
+        print(attr, val)
         
 

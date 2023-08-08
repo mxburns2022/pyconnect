@@ -124,10 +124,10 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-#        print self.disc.minima_index['GM']
+#        print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
             
-        #print self.disc.basin_index
+        #print(self.disc.basin_index)
         self.assertEqual(1,1)
 
 
@@ -169,7 +169,7 @@ class TestDisconnect(unittest.TestCase):
             test_list.append(indice)
             
         minima_list = self.disc.minima_index['Index'].keys()
-#        print 'min', self.disc.minima_index['Index'][3]
+#        print('min', self.disc.minima_index['Index'][3])
         self.assertEqual(minima_list, test_list)
 
     def testRemoveDisjointTS(self):
@@ -206,7 +206,7 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-#        print self.disc.minima_index['GM']
+#        print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
         self.disc.AssignBasins()
         for lines in open('basin_at_level'):
@@ -216,10 +216,10 @@ class TestDisconnect(unittest.TestCase):
             
         for l in self.disc.basin_index['Level']:
             minima_list[l] = self.disc.basin_index['Level'][l]['No. of Basins']
-        #print 'min', self.disc.minima_index['Index'][3]
-        #print 'min', self.disc.minima_index['Index'][4]
-        #print self.disc.minima_index['Index'][127634]['Basin']['Level']
-        #print self.disc.basin_index['Level'][15]
+        #print('min', self.disc.minima_index['Index'][3])
+        #print('min', self.disc.minima_index['Index'][4])
+        #print(self.disc.minima_index['Index'][127634]['Basin']['Level'])
+        #print(self.disc.basin_index['Level'][15])
         self.assertDictEqual(minima_list, test_list)
 
 
@@ -235,7 +235,7 @@ class TestDisconnect(unittest.TestCase):
 #    self.disc.RemoveThreshold()
 #    self.disc.RemoveUnderConnect()
 #    self.disc.RemoveDisjoint()
-#    print self.disc.minima_index['GM']
+#    print(self.disc.minima_index['GM'])
 #    self.disc.InitialiseBasin()
 #    for lines in open('min_in_basin_num'):
 #        level = int(lines.split()[0])
@@ -244,9 +244,9 @@ class TestDisconnect(unittest.TestCase):
 #        
 #    for l in self.disc.basin_index['Level']:
 #        minima_list[l] = self.disc.basin_index['Level'][l]['No. of Basins']
-#    print 'min', self.disc.minima_index['Index'][3]
-#    print 'min', self.disc.minima_index['Index'][4]
-#    #print self.disc.basin_index
+#    print('min', self.disc.minima_index['Index'][3])
+#    print('min', self.disc.minima_index['Index'][4])
+#    #print(self.disc.basin_index)
 #    self.assertDictEqual(minima_list, test_list)
 #
 
@@ -262,7 +262,7 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-        #print self.disc.minima_index['GM']
+        #print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
         self.disc.AssignBasins()
         self.disc.PruneBasins()
@@ -275,9 +275,9 @@ class TestDisconnect(unittest.TestCase):
             
         for l in self.disc.basin_index['Level']:
             minima_list[l] = self.disc.basin_index['Level'][l]['No. of Basins']
-        #print 'min', self.disc.minima_index['Index'][3]
-        #print 'min', self.disc.minima_index['Index'][4]
-        #print self.disc.basin_index
+        #print('min', self.disc.minima_index['Index'][3])
+        #print('min', self.disc.minima_index['Index'][4])
+        #print(self.disc.basin_index)
         self.assertDictEqual(minima_list, test_list)
 
 
@@ -294,7 +294,7 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-        #print self.disc.minima_index['GM']
+        #print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
         self.disc.AssignBasins()
         
@@ -316,11 +316,11 @@ class TestDisconnect(unittest.TestCase):
             for l in self.disc.basin_index['Level']:
                 
                 b = self.disc.minima_index['Index'][m]['Basin']['Level'][l]
-         #       print m, l, b
+         #       print(m, l, b)
                 if b:
                     try:
                         minima_list[l][b].append(m)
-          #              print 'try', m,l,b,minima_list
+          #              print('try', m,l,b,minima_list)
                     except KeyError:
                         try:
                         #minima_list[l] = {}
@@ -328,20 +328,20 @@ class TestDisconnect(unittest.TestCase):
                         except KeyError:
                             minima_list[l] = {}
                             minima_list[l][b] = [m]
-           #             print 'except', m,l,b,minima_list
-        #print 'min', self.disc.minima_index['Index'][3]
-        #print 'min', self.disc.minima_index['Index'][4]
+           #             print('except', m,l,b,minima_list)
+        #print('min', self.disc.minima_index['Index'][3])
+        #print('min', self.disc.minima_index['Index'][4])
         
-#        print minima_list
-#        print len(minima_list), len(test_list), 'len'
-#        print test_list
-        #print 'hello'
+#        print(minima_list)
+#        print(len(minima_list), len(test_list), 'len')
+#        print(test_list)
+        #print('hello')
         for i in self.disc.minima_index['Index']:
             for j in self.disc.minima_index['Index'][i]['Basin']['Level']:
                 k =  self.disc.minima_index['Index'][i]['Basin']['Level'][j]
-         #       print i, j, k
-        #print self.disc.minima_index['Index']
-        #print self.disc.basin_index
+         #       print(i, j, k)
+        #print(self.disc.minima_index['Index'])
+        #print(self.disc.basin_index)
         self.assertDictEqual(minima_list, test_list)
 
     def testRenumberBasinNum(self):
@@ -356,7 +356,7 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-        #print self.disc.minima_index['GM']
+        #print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
         self.disc.AssignBasins()
         self.disc.PruneBasins()
@@ -379,9 +379,9 @@ class TestDisconnect(unittest.TestCase):
             for b in self.disc.basin_index['Level'][l]['Basin']:
                 
                 minima_list[l][b] = self.disc.basin_index['Level'][l]['Basin'][b]['Min']
-        #print minima_list
-        #print len(minima_list), len(test_list), 'len'
-        #print test_list
+        #print(minima_list)
+        #print(len(minima_list), len(test_list), 'len')
+        #print(test_list)
         
         
         self.assertDictEqual(minima_list, test_list)
@@ -400,7 +400,7 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-        #print self.disc.minima_index['GM']
+        #print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
         self.disc.AssignBasins()
         self.disc.PruneBasins()
@@ -430,11 +430,11 @@ class TestDisconnect(unittest.TestCase):
                 b = test_list[l][m]
                 if minima_list[l][m]:
                     ref[l][m] = {b:minima_list[l][m]}
-                if not ref[l][m][b]: print 'FUCKING HELL!'
-#        print minima_list[3]
-        #print len(minima_list), len(test_list), 'len'
-#        print ref[3], len(ref[3])
-#        print test_list[3]
+                if not ref[l][m][b]: print('FUCKING HELL!')
+#        print(minima_list[3])
+        #print(len(minima_list), len(test_list), 'len')
+#        print(ref[3], len(ref[3]))
+#        print(test_list[3])
         
         
         self.assertDictEqual(minima_list, test_list)
@@ -452,7 +452,7 @@ class TestDisconnect(unittest.TestCase):
         self.disc.RemoveThreshold()
         self.disc.RemoveUnderConnect()
         self.disc.RemoveDisjoint()
-        #print self.disc.minima_index['GM']
+        #print(self.disc.minima_index['GM'])
         self.disc.InitialiseBasin()
         self.disc.AssignBasins()
         self.disc.PruneBasins()
@@ -529,20 +529,20 @@ class TestDisconnect(unittest.TestCase):
                     pmin_list[l][b] = self.disc.basin_index['Level'][l]['Basin'][b]['Parents']
         # Re-number test list to correspond to minima_list
         
-        #print self.disc.basin_index['Level']
-        #print self.disc.basin_index['Level'][2]['Basin'][13]
-        #print 'python'
-        #print minima_list[2]
-        #print 'FORTRAN'
-        #print test_list[2]
+        #print(self.disc.basin_index['Level'])
+        #print(self.disc.basin_index['Level'][2]['Basin'][13])
+        #print('python')
+        #print(minima_list[2])
+        #print('FORTRAN')
+        #print(test_list[2])
         #
-        #print 'python'
-        #print minima_list[3]
-        #print 'FORTRAN'
-        #print test_list[3]
+        #print('python')
+        #print(minima_list[3])
+        #print('FORTRAN')
+        #print(test_list[3])
 
-        #print parent_list
-        #print pmin_list
+        #print(parent_list)
+        #print(pmin_list)
         self.assertDictEqual(pmin_list, parent_list)
 
     def testChildren(self):
@@ -590,11 +590,11 @@ class TestDisconnect(unittest.TestCase):
         # Remove duplicates from childre_list
         for l in children_list:
             for p in children_list[l]:
-                #print 'hello',children_list[l][p]
+                #print('hello',children_list[l][p])
                 children_list[l][p] = list(set(children_list[l][p]))
-                #print 'hello again', children_list[l][p]
+                #print('hello again', children_list[l][p])
                 #list(children_list[l][p])
-                #print 'hello hello again', children_list[l][p]
+                #print('hello hello again', children_list[l][p])
         for l in self.disc.basin_index['Level']:
             minima_list[l] = {}
             for b in self.disc.basin_index['Level'][l]['Basin']:

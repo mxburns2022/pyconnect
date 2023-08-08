@@ -120,7 +120,7 @@ class ProductTestCase(unittest.TestCase):
 
         pca.basis = 'dihedral'
         
-        print pca.config_space  
+        print(pca.config_space  )
         
         dihedrals = np.array([np.cos(np.deg2rad(-175.697530)),
                               np.sin(np.deg2rad(-175.697530)),
@@ -164,7 +164,7 @@ class ProductTestCase(unittest.TestCase):
         for i in range(10):
             
             theta = float(i)*0.2*np.pi#np.random.random()*2.0*np.pi
-            print 'theta', theta
+            print('theta', theta)
 #        mux, sigmax = 30, 1
 #        muy, sigmay = 20, 0.5
 #        theta = -1.0*np.pi/3.0
@@ -197,16 +197,16 @@ class ProductTestCase(unittest.TestCase):
             ax.scatter(pca.config_space[:,0],pca.config_space[:,1],c=xprime, alpha = 0.2, marker = 'o')
 #        
             pca.runPCA()
-            print 'analytic\n',analytic_PCs
-            print 'calc\n', pca.PCs, '\n', np.dot(pca.PCs[0][:],pca.PCs[1][:])
-#        print 'pca.config_mu', pca.config_mu
-#        print 'pca.config_sigma', pca.config_sigma
-#        print 'pca.PCs', pca.PCs
-#        print 'pca.PCs[1]', pca.PCs[1]
-#        print 'pca.PCs[0]', pca.PCs[0]
-#        print 'cov', pca.cov
-#        print 'variance', pca.variance
-#        print 'std', pca.std
+            print('analytic\n',analytic_PCs)
+            print('calc\n', pca.PCs, '\n', np.dot(pca.PCs[0][:],pca.PCs[1][:]))
+#        print('pca.config_mu', pca.config_mu)
+#        print('pca.config_sigma', pca.config_sigma)
+#        print('pca.PCs', pca.PCs)
+#        print('pca.PCs[1]', pca.PCs[1])
+#        print('pca.PCs[0]', pca.PCs[0])
+#        print('cov', pca.cov)
+#        print('variance', pca.variance)
+#        print('std', pca.std)
 #        
 #        
 #        ax.scatter(pca.Y[:,0], pca.Y[:,1], alpha = 0.2, c=xprime, marker = 'o')
@@ -242,7 +242,7 @@ class ProductTestCase(unittest.TestCase):
         for i in range(10):
             
             theta = np.random.random()*2.0*np.pi
-            print 'theta', theta
+            print('theta', theta)
 #        mux, sigmax = 30, 1
 #        muy, sigmay = 20, 0.5
 #        theta = -1.0*np.pi/3.0
@@ -275,16 +275,16 @@ class ProductTestCase(unittest.TestCase):
             ax.scatter(pca.config_space[:,0],pca.config_space[:,1],c=xprime, alpha = 0.2, marker = 'o')
 #        
             pca.runPCA()
-            print 'analytic\n',analytic_PCs
-            print 'calc\n', pca.PCs, '\n', np.dot(pca.PCs[0][:],pca.PCs[1][:])
-#        print 'pca.config_mu', pca.config_mu
-#        print 'pca.config_sigma', pca.config_sigma
-#        print 'pca.PCs', pca.PCs
-#        print 'pca.PCs[1]', pca.PCs[1]
-#        print 'pca.PCs[0]', pca.PCs[0]
-#        print 'cov', pca.cov
-#        print 'variance', pca.variance
-#        print 'std', pca.std
+            print('analytic\n',analytic_PCs)
+            print('calc\n', pca.PCs, '\n', np.dot(pca.PCs[0][:],pca.PCs[1][:]))
+#        print('pca.config_mu', pca.config_mu)
+#        print('pca.config_sigma', pca.config_sigma)
+#        print('pca.PCs', pca.PCs)
+#        print('pca.PCs[1]', pca.PCs[1])
+#        print('pca.PCs[0]', pca.PCs[0])
+#        print('cov', pca.cov)
+#        print('variance', pca.variance)
+#        print('std', pca.std)
 #        
 #        
             ax.scatter(pca.Y[:,0], pca.Y[:,1], alpha = 0.2, c=xprime, marker = 'o')

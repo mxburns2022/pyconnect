@@ -20,7 +20,7 @@ if __name__ == '__main__':
     pca.ShapeCheck()
     pca.ReadMinimaIndex()
     pca.ReadConfigurationSpace()
-#    print pca.kw.beta
+#    print(pca.kw.beta)
     if pca.kw.beta:
         pca.ReadMinimaEnergies()   
         pca.FindGM()
@@ -35,9 +35,9 @@ if __name__ == '__main__':
         pca.ReshapeCartesian3D2D()
 
     if pca.kw.basis == 'dihedral':
-        print 'Converting to Internal Dihedrals'
+        print('Converting to Internal Dihedrals')
         pca.ReshapeDihedral()
-        print 'Done'
+        print('Done')
         
 
     pca.SaveConfigSpace(kw.conv_fname)

@@ -50,7 +50,7 @@ class DGCanvasFrame():
         '''
         Format axes (ie. determine location and add labels)
         '''
-        for loc, spine in self.ax.spines.iteritems():
+        for loc, spine in self.ax.spines.items():
             if loc in ['left']:    
                 spine.set_position(('outward',10)) # outward by 10 points                                                                               
             elif loc in ['right','top','bottom']:
@@ -99,7 +99,7 @@ class DGCanvasFrame():
             try:
                 self.disc.minima_index['Index'][i]
             except KeyError:
-                print "Minimum " + label + " not present"
+                print("Minimum " + label + " not present")
                 continue
             
             for l in self.disc.minima_index['Index'][i]['Basin']['Level']:
@@ -139,7 +139,7 @@ class DGCanvasFrame():
                 p = self.disc.basin_index['Level'][l]['Basin'][b]\
                     ['Parents']
                 self.LinesDG(l,b,c,p)
-        print 'shape of self.line_array', np.shape(self.line_array), type(self.line_array[0])
+        print('shape of self.line_array', np.shape(self.line_array), type(self.line_array[0]))
 
         self.Line = LineCollection(self.line_array,
                                    color=self.rgba_array,
@@ -159,7 +159,7 @@ class DGCanvasFrame():
         if not c:
             try: z2 = self.disc.basin_index['Level'][l]['Basin'][b]['Energy']
             except KeyError: 
-                print "Basin %d at level %d appears to have no children, and yet has not been assigned an Energy"%(b,l)
+                print("Basin %d at level %d appears to have no children, and yet has not been assigned an Energy"%(b,l))
                 sys.exit()
         else:
 
@@ -235,7 +235,7 @@ class MDGCanvasFrame():
         '''
         Format axes (ie. determine location and add labels)
         '''
-        for loc, spine in self.ax.spines.iteritems():
+        for loc, spine in self.ax.spines.items():
             if loc in ['left','bottom']:    
                 spine.set_position(('outward',10)) # outward by 10 points                                                                               
             elif loc in ['right','top']:
@@ -311,7 +311,7 @@ class MDGCanvasFrame():
         divider = make_axes_locatable(self.ax)
         self.axHistx = divider.append_axes("top", 1.2, pad=0.0, sharex=self.ax)
         
-        for loc, spine in self.axHistx.spines.iteritems():
+        for loc, spine in self.axHistx.spines.items():
             if loc in ['right']:    
                 spine.set_position(('outward',10)) # outward by 10 points                                                                               
             elif loc in ['left','bottom','top']:
@@ -429,7 +429,7 @@ class MDGCanvasFrame():
 #         self.list_y = np.hstack(self.list_y)
 #         self.list_z = np.hstack(self.list_z)
 #         self.connections = np.vstack(self.connections)
-# #        print np.shape(self.list_x), np.shape(self.plot_index)
+# #        print(np.shape(self.list_x), np.shape(self.plot_index))
 # #        for i in self.disc.minima_index['Index']:
 # #            self.rgba_array.append(self.disc.minima_index['Index'][i][])
 # #        self.s = self.list_x**2 + self.list_y**2 + self.list_z**2
@@ -628,23 +628,23 @@ if __name__ == '__main__':
     
     disc.PositionBasins()
     #t1 = time.time()
-    #print 'Initialise disconnect %2.6f'%(#t1-#t0)
-    #print 'Total %2.6f'%(#t1-#t00)
+    #print('Initialise disconnect %2.6f'%(#t1-#t0))
+    #print('Total %2.6f'%(#t1-#t00))
     #disc.GetMetric3D()                                                 
     #t0 = time.time()
-#    #print disc.minima_index['Index'][5]
+#    #print(disc.minima_index['Index'][5])
     #t1 = time.time()
-    #print '#print disc.minima_index %2.6f'%(#t1-#t0)
+    #print('#print disc.minima_index %2.6f'%(#t1-#t0))
     #t0 = time.time()
 #    DG = DGCanvasFrame(disc)
     #t1 = time.time()
-    #print 'Initialise DGframe %2.6f'%(#t1-#t0)
+    #print('Initialise DGframe %2.6f'%(#t1-#t0))
     #t0 = time.time()
 #    plt.ylim(-48,-52)
 #    plt.show()
 #    plt.savefig("tree.eps",format="eps")
     #t1 = time.time()
-    #print 'Initialise disconnect %2.6f'%(#t1-#t0)
+    #print('Initialise disconnect %2.6f'%(#t1-#t0))
 #    MDG = MDGCanvasFrame(disc,Q='X')
 #    plt.savefig("metrictreeX.eps",format="eps")
 #    MDG = MDGCanvasFrame(disc,Q='Y')
@@ -656,19 +656,19 @@ if __name__ == '__main__':
 #        t0 = time.time()
 #        app.DGframe = DGCanvasFrame(disc)
 #        t1 = time.time()
-#        print 'DG %2.6f'%(t1-t0)
+#        print('DG %2.6f'%(t1-t0))
 #        t0 = time.time()
 #        app.MDG1frame = MDGCanvasFrame(disc,Q='X')
 #        t1 = time.time()
-#        print 'MDG1 %2.6f'%(t1-t0)
+#        print('MDG1 %2.6f'%(t1-t0))
 #        t0 = time.time()
 #        app.MDG2frame = MDGCanvasFrame(disc,Q='Y')
 #        t1 = time.time()
-#        print 'MDG2 %2.6f'%(t1-t0)
+#        print('MDG2 %2.6f'%(t1-t0))
 #        t0 = time.time()
 #        app.MDG3Dframe = MDG3DCanvasFrame(disc)
 #        t1 = time.time()
-#        print 'MDG3D %2.6f'%(t1-t0)
+#        print('MDG3D %2.6f'%(t1-t0))
 #        
 #        app.DGframe.Show()
 #        app.MDG1frame.Show()

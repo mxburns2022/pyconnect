@@ -87,7 +87,7 @@ class Keyword():
             if not var: missing_list.append(attr)
         
         if missing_list:
-            print 'WARNING: Following Keywords not found:\n', missing_list
+            print('WARNING: Following Keywords not found:\n', missing_list)
             sys.exit()
             
     def TypeCheck(self):
@@ -159,7 +159,7 @@ class PC_project(PCAprint):
             line = self.modsplit(line)#list(str(line).split())
             
             self.pdbLineRead(line)
-#            print line, len(line)
+#            print(line, len(line))
 
     def pdbLineRead(self, line):
         '''
@@ -188,7 +188,7 @@ class PC_project(PCAprint):
             else: 
                 if split_list[-1][-1] == ' ': split_list.append(i)
                 else: split_list[-1] = split_list[-1] + i
-#        print split_list
+#        print(split_list)
         return split_list
     
     def BaseFileRead(self):
@@ -215,7 +215,7 @@ class PC_project(PCAprint):
                                            3])
 #        self.config_space = np.swapaxes(self.config_space,1,2)
 #        self.shape = np.shape(self.config_space)
-#        print self.pc_xyz
+#        print(self.pc_xyz)
         
     def xyzLineRead(self,line):
         '''
@@ -257,7 +257,7 @@ class PC_project(PCAprint):
         '''
         mu = self.config_mu.reshape(1,self.kw.n_atoms,3)#.swapaxes(1,2)
         sigma = self.config_sigma.reshape(1,self.kw.n_atoms,3)#.swapaxes(1,2)
-        print 'single point', self.single_point[self.kw.pc -1]
+        print('single point', self.single_point[self.kw.pc -1])
         self.base_xyz = self.base_xyz - self.single_point[self.kw.pc - 1]*(self.pc_xyz*sigma[0] + mu[0])
         
     def pdbMake(self):
@@ -279,7 +279,7 @@ class PC_project(PCAprint):
 
         f = open(self.pdb_output_file, 'w')
         for l in self.pdb:
-#            print l[10:14]
+#            print(l[10:14])
             for c in l[0:9]:
                 f.write(str(c))
             x, y, z = l[10:13]
@@ -307,7 +307,7 @@ class PC_project(PCAprint):
         for i in range(self.kw.n_steps + 1):
             t = self.kw.parm_min
             t += i*step_size
-            print t, i, step_size
+            print(t, i, step_size)
             self.Project(t)
             self.pdbGenerateName(self.kw.pdb_output, i)
             self.pdbMake()

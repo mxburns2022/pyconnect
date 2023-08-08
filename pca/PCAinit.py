@@ -66,14 +66,14 @@ class PCAinit():
         
 
         self.total_min = num_lines
-        print 'No. of minima: %i'%self.total_min
+        print('No. of minima: %i'%self.total_min)
         
     def BasisCheck(self):
         if self.kw.basis != 'cartesian':
             if self.kw.basis != 'dihedral':
                 raise RuntimeError('basis set to be transformed to must either be "cartesian" or "dihedral"')
         else:
-            print 'PCA will be performed on the', self.kw.basis, 'basis set'
+            print('PCA will be performed on the', self.kw.basis, 'basis set')
         
     def ShapeCheck(self):
         self.shape = np.shape(self.config_space)
@@ -91,7 +91,7 @@ class PCAinit():
         Checks the file extension to determine whether the points file is a 
         numpy binary file or a FORTRAN unformatted file.
         '''
-        print self.kw.points[-4:]
+        print(self.kw.points[-4:])
         if self.kw.points[-4:] == ".npy":
             self.ReadConfigurationSpacePython()
         else:
@@ -104,7 +104,7 @@ class PCAinit():
         unformatted FORTRAN file "points.min" and saves them in the array 
         self.config_space
         '''
-        print 'Reading %d structures containing %d atoms each'%(self.n_min,
+        print('Reading %d structures containing %d atoms each'%(self.n_min,)
                                                                  self.kw.n_atoms)
 #        for i in range(self.n_min):
 #            rec = self.min_index[i]
@@ -118,7 +118,7 @@ class PCAinit():
 #                                                                        self.kw.n_atoms))
 #        sys.stdout.write('\r')
 #        sys.stdout.write('All Structures Read  \n')
-#        print 'Extraction complete'
+#        print('Extraction complete')
         self.config_space = np.load(self.kw.points)
     
     def ReadConfigurationSpaceFORTRAN(self):
@@ -127,7 +127,7 @@ class PCAinit():
         unformatted FORTRAN file "points.min" and saves them in the array 
         self.config_space
         '''
-        print 'Reading %d structures containing %d atoms each'%(self.n_min,
+        print('Reading %d structures containing %d atoms each'%(self.n_min,)
                                                                  self.kw.n_atoms)
         for i in range(self.n_min):
             rec = self.min_index[i]
@@ -141,7 +141,7 @@ class PCAinit():
                                                                         self.kw.n_atoms))
         sys.stdout.write('\r')
         sys.stdout.write('All Structures Read  \n')
-        print 'Extraction complete'
+        print('Extraction complete')
     
     def ReadMinimaIndex(self):
         '''    
@@ -152,7 +152,7 @@ class PCAinit():
         for line in open(self.kw.min_file,'r'):
             self.min_index.append(int(line))
         self.n_min = len(self.min_index)
-        print 'List of indices of minima to be included in PCA calculation read in from file: %s'%(self.kw.min_file)
+        print('List of indices of minima to be included in PCA calculation read in from file: %s'%(self.kw.min_file))
     
     
 #    def WritePCAToFile(self, PCA, Q=1, Normal=True):

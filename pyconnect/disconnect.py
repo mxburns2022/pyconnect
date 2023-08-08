@@ -129,7 +129,9 @@ class Disconnect(object):
         for line in open(file_name, 'r'):
             minima_data = line.split()
             i += 1
-            if self.kw.first['E1'] <= float(minima_data[0]): continue
+            if self.kw.first['E1'] <= float(minima_data[0]): 
+                breakpoint()
+                continue
             else:
                 self.minima_index['Index'][i] =  dict(Energy = float(minima_data[0]))
             
@@ -145,17 +147,20 @@ class Disconnect(object):
         for line in open(file_name, 'r'):
             TS_data = line.split()
             i += 1
-            if int(TS_data[3]) == int(TS_data[4]): continue
-            elif self.kw.tsthresh['tsthresh'] <= float(TS_data[0]): continue
-            elif  not self.minima_index['Index'].has_key(int(TS_data[3])):
-                continue
-            elif  not self.minima_index['Index'].has_key(int(TS_data[4])):
-                continue
-#            if int(TS_data[3]) 
-            else:
-                self.ts_index['Index'][i] = dict(Energy = float(TS_data[0]), 
-                                                 Min1 = int(TS_data[3]), 
-                                                 Min2 = int(TS_data[4]))
+            try:
+                if int(TS_data[3]) == int(TS_data[4]): continue
+                elif self.kw.tsthresh['tsthresh'] <= float(TS_data[0]): continue
+                elif int(TS_data[3]) not in self.minima_index['Index'].keys():
+                    continue
+                elif int(TS_data[4]) not in self.minima_index['Index'].keys():
+                    continue
+    #            if int(TS_data[3]) 
+                else:
+                    self.ts_index['Index'][i] = dict(Energy = float(TS_data[0]), 
+                                                    Min1 = int(TS_data[3]), 
+                                                    Min2 = int(TS_data[4]))
+            except:
+                breakpoint()
             
 
 #--------------------------------------------------------------------#
@@ -164,7 +169,7 @@ class Disconnect(object):
         '''
         
         '''
-        print 'Assigning Minima to Basins'
+        print('Assigning Minima to Basins')
         for level in self.basin_index['Level']:
             energy_threshold = self.EnergyThreshold(level)
 
@@ -183,8 +188,8 @@ class Disconnect(object):
                         
                 self.AssignMinToBasin(level, indice)
                 
-            print '%d basins at energy %2.2f'%(self.basin_index['Level'][level]['No. of Basins'],
-                                               self.basin_index['Level'][level]['Energy'])
+            print('%d basins at energy %2.2f'%(self.basin_index['Level'][level]['No. of Basins'],
+                                               self.basin_index['Level'][level]['Energy']))
 #--------------------------------------------------------------------#
 
     def EnergyThreshold(self,level):
@@ -338,7 +343,7 @@ class Disconnect(object):
              
                     temp[b] = self.basin_index['Level'][l]['Basin'][b].copy()
                     del self.basin_index['Level'][l]['Basin'][b]
-                except KeyError, e:
+                except KeyError as e:
              
                     sys.exit('Level: %s Basin: %s'%(l, e))
                 
@@ -414,7 +419,7 @@ class Disconnect(object):
         Finds the global minimum of the database
         '''
         GM = min(self.minima_index['Index'],
-                 key = self.minima_index['Index'].get)#['Energy'])
+                 key = lambda x,self=self: self.minima_index['Index'][x]['Energy'])
         self.minima_index['GM'] = self.minima_index['Index'][GM]
         self.minima_index['GM']['Index'] = GM
         
@@ -491,8 +496,8 @@ class Disconnect(object):
         dm, dt = self._RemoveBadTS()
         
         if dm or dt:
-            print "Transition states indices with energy lower than the minima they connect:"
-            print [t for t in list(set(dt))]
+            print("Transition states indices with energy lower than the minima they connect:")
+            print([t for t in list(set(dt))])
         
         dt = self._RemoveUnderConnectedTS(dm, dt)
                 
@@ -506,7 +511,7 @@ class Disconnect(object):
             for m in dm:
                 del self.minima_index['Index'][m]
                 
-            print "%d Transition states and %d minima were invalid and had to be removed"%(len(dt), len(dm))
+            print("%d Transition states and %d minima were invalid and had to be removed"%(len(dt), len(dm)))
             
     def _RemoveBadTS(self):
         '''
@@ -644,7 +649,7 @@ class Disconnect(object):
         for indice in temp_dict['Index']:
             if not temp_dict['Index'][indice]['Connect to GM']:
                 for i in self.minima_index['Index'][indice]['TS']:
-                    if self.ts_index['Index'].has_key(i):
+                    if i in self.ts_index['Index'].keys():
                         del self.ts_index['Index'][i]
                 del self.minima_index['Index'][indice]
         
