@@ -104,8 +104,8 @@ class PCAinit():
         unformatted FORTRAN file "points.min" and saves them in the array 
         self.config_space
         '''
-        print('Reading %d structures containing %d atoms each'%(self.n_min,)
-                                                                 self.kw.n_atoms)
+        print('Reading %d structures containing %d atoms each'%(self.n_min,
+                                                                 self.kw.n_atoms))
 #        for i in range(self.n_min):
 #            rec = self.min_index[i]
 #            progress = (float(i)/float(self.n_min))*100 # Note integer division
@@ -127,8 +127,8 @@ class PCAinit():
         unformatted FORTRAN file "points.min" and saves them in the array 
         self.config_space
         '''
-        print('Reading %d structures containing %d atoms each'%(self.n_min,)
-                                                                 self.kw.n_atoms)
+        print('Reading %d structures containing %d atoms each'%(self.n_min,
+                                                                 self.kw.n_atoms))
         for i in range(self.n_min):
             rec = self.min_index[i]
             progress = (float(i)/float(self.n_min))*100 # Note integer division

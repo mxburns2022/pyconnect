@@ -27,10 +27,9 @@ class DGCanvasFrame():
         self.fig = plt.figure()
 
         self.ax = self.fig.add_subplot(111)
+        self.FormatPlot()
 
         self.FormatAxes()
-        
-        self.FormatPlot()
         
         self.PlotDG()
         
@@ -43,7 +42,7 @@ class DGCanvasFrame():
         
         if self.disc.kw.identify_node:
             self.IdentifyBasinSize()
-            
+        self.ax.set_title('22 Node Wishart$\alpha=0.5$')
         
 
     def FormatAxes(self):
@@ -61,7 +60,7 @@ class DGCanvasFrame():
         self.ax.xaxis.set_ticks([])
         self.ax.yaxis.set_ticks_position('left')
         if self.disc.kw['energy_label']['label']: 
-            self.ax.set_ylabel(self.disc.kw['energy_label']['label'])
+            self.ax.set_ylabel(self.disc.kw['energy_label']['label'], size=20, family='Arial')
             
         self.ax.set_xlim(-0.5,0.5)
         self.ax.set_ylim(self.disc.kw.first['E1'] - (self.disc.kw.levels['n'])*self.disc.kw.delta['dE'],self.disc.kw.first['E1'])#(-48,-52)
@@ -70,10 +69,12 @@ class DGCanvasFrame():
     def FormatPlot(self):
         '''
         Formats latex labels
-        '''
+        ''' 
         if self.disc.kw.tex:
             rc('text', usetex=True)
-            rc('font', family='serif')
+        rc('font', family='Arial', size=18)
+        rc('lines', linewidth=4)
+        rc('figure', figsize=(10,7))
 
  
     def AddColourBar(self):
@@ -127,7 +128,7 @@ class DGCanvasFrame():
                 if s >= max_min:
                     x = self.disc.basin_index['Level'][l]['Basin'][b]['X']
                     y = self.disc.basin_index['Level'][l]['Energy']
-                    self.ax.text(x,y,'%d, %d, %d'%(l,b,s))
+                    self.ax.text(x,y,'%d, %d, %d'%(l,b,s), fontsize=40)
  
     def PlotDG(self):
         self.plot_listy = []
@@ -143,7 +144,7 @@ class DGCanvasFrame():
 
         self.Line = LineCollection(self.line_array,
                                    color=self.rgba_array,
-                                   linewidth=0.5)
+                                   linewidth=1)
         self.ax.add_collection(self.Line)
 
     def LinesDG(self,l,b,c,p):
@@ -155,7 +156,7 @@ class DGCanvasFrame():
         z1 = 1.0*(self.disc.basin_index['Level'][l-1]['Energy'])
         
         x2 = self.disc.basin_index['Level'][l]['Basin'][b]['X']
-
+ 
         if not c:
             try: z2 = self.disc.basin_index['Level'][l]['Basin'][b]['Energy']
             except KeyError: 

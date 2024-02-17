@@ -52,8 +52,8 @@ class MyPCAprep(PCAinit):
         self.global_min_energy = min(self.min_energies)
         self.global_min_index = self.min_energies.index(self.global_min_energy)
 
-        print('Global minimum: %d\tEnergy = %2.4f'%(self.global_min_index,)
-                                                    self.global_min_energy)
+        print('Global minimum: %d\tEnergy = %2.4f'%(self.global_min_index,
+                                                    self.global_min_energy))
        
     def CalculateWeighting(self):
         '''

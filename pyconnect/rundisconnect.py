@@ -11,7 +11,6 @@ if __name__ == '__main__':
     print('Disconnectivity Graphs')
     print('--------------- ------\n')
     print('Reading keyword file\n')
-    
     kw = Keywords()
 
     disc = DisconnectPlot(kw)
@@ -58,7 +57,6 @@ if __name__ == '__main__':
     
     print('Positioning Basins')
     disc.PositionBasins()
-
     if disc.kw.metric3d['present']:
         
         DGframe = DGCanvasFrame(disc)
